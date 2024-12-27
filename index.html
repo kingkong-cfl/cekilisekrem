@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Yılbaşı Çekilişi 2024 🎁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a472a, #2a623d);
+            color: #fff;
+        }
+        .login-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            margin-bottom: 20px;
+        }
+        .result {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: #c41e3a;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #a01830;
+        }
+        .error {
+            color: #ff6b6b;
+            display: none;
+            margin-top: 10px;
+        }
+        h1, h2, h3 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #giftPerson {
+            font-size: 24px;
+            text-align: center;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .snowflake {
+            font-size: 20px;
+            position: fixed;
+            animation: snowfall linear infinite;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        @keyframes snowfall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <h1>🎄 Yılbaşı Çekilişi 2024 🎁</h1>
+        <input type="password" id="password" placeholder="Şifrenizi girin">
+        <button onclick="checkPassword()">🎁 Hediye Arkadaşımı Göster</button>
+        <p id="error" class="error">⚠️ Hatalı şifre! Lütfen tekrar deneyin.</p>
+    </div>
+    <div id="result" class="result">
+        <h3>🎉 Hediye alacağınız kişi:</h3>
+        <p id="giftPerson"></p>
+        <p style="text-align: center">Hediyenizi 31 Aralık'ta vermeyi unutmayın! 🎁</p>
+    </div>
+
+    <script>
+        const participants = {
+            "alperen-3131": {name: "Alperen", recipient: "Ender"},
+            "ender-3152": {name: "Ender", recipient: "Emir"},
+            "emir-313131": {name: "Emir", recipient: "Ömer"},
+            "omer-31525231": {name: "Ömer", recipient: "Ekrem"},
+            "ekrem-3131313131313131": {name: "Ekrem", recipient: "Ebubekir"},
+            "ebubekir-315269": {name: "Ebubekir", recipient: "Kaan"},
+            "kaan-24073131": {name: "Kaan", recipient: "Alperen"}
+        };
+
+        function checkPassword() {
+            const password = document.getElementById("password").value;
+            const error = document.getElementById("error");
+            const result = document.getElementById("result");
+            const giftPerson = document.getElementById("giftPerson");
+
+            if (participants[password]) {
+                error.style.display = "none";
+                result.style.display = "block";
+                giftPerson.textContent = participants[password].recipient;
+            } else {
+                error.style.display = "block";
+                result.style.display = "none";
+            }
+        }
+
+        // Kar efekti
+        function createSnowflakes() {
+            const symbols = ['❄', '❅', '❆'];
+            for (let i = 0; i < 20; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snowflake.style.opacity = Math.random();
+                snowflake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                document.body.appendChild(snowflake);
+            }
+        }
+        createSnowflakes();
+    </script>
+</body>
+</html>
